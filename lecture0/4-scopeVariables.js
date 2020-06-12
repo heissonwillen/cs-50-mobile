@@ -1,12 +1,13 @@
-// console.log(thisIsALet) //error
-// console.log(thisIsAVar) //not an error, hoisting
+// console.log(thisIsALet) // error
+// console.log(thisIsAVar) // not an error, hoisting
 
 // thisIsHoisted()
 // thisIsNotHoisted() // error
 
+thisIsAlsoAVariavle = "global variable"
 const thisIsAConst = 50
 
-// thisIsAConst++ //error
+// thisIsAConst++ // error
 
 const consObj = {}
 
@@ -15,7 +16,7 @@ consObj.a = 'a'
 let thisIsALet = 51
 thisIsALet = 50
 
-// let thisIsALet = 51 //error
+// let thisIsALet = 51 / /error
 
 var thisIsAVar = 50
 thisIsAVar = 51
