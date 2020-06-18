@@ -1,24 +1,27 @@
-import React, {Component} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 
-import Count from './Count.js'
+import Counter from './Counter.js'
 
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Count count={0} />
-      </View>
-    );
-  }
+export default class App extends Component {
+	render() {
+		return (
+			<View style={styles.container}>
+				<Counter />
+			</View>
+		);
+	}
 }
 
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+	container: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingTop: Constants.statusBarHeight,
+		backgroundColor: '#ecf0f1',
+	},
 });
