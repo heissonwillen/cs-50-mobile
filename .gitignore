@@ -1,4 +1,4 @@
-node_modules/**/*
+projects/project1/node_modules/**/*
 .expo/*
 npm-debug.*
 *.jks
