@@ -20,9 +20,10 @@ class Counter extends Component {
 	}
 
     resetCount = () => {
-        console.log("reseting");
+        console.log("reseting timer");
         this.setState(prevState => ({
             seconds: 60,
+            minutes: 25
         }))
     }
 
