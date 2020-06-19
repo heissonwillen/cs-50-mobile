@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet, Button, Vibration } from 'react-native';
 import Constants from 'expo-constants';
 
 
@@ -8,12 +8,13 @@ const BREAK_MINUTES = 5
 
 const minToSec = mins => mins*60
 
-let isPaused = false
+let isPaused = true
+let isWorking = true
 
 
 class Counter extends Component {
 	state = {
-		seconds: minToSec(WORK_MINUTES),
+		seconds: minToSec(BREAK_MINUTES),
 	}
 
 	componentDidMount() {
@@ -21,20 +22,23 @@ class Counter extends Component {
 	}
 
 	decreaseCount = () => {
+		const decreaseInterval = isPaused ? 0 : 1
 		this.setState(prevState => ({
-            seconds: (prevState.seconds > 1 ? prevState.seconds - 1 : 0)
+            seconds: prevState.seconds > 0 ? prevState.seconds - decreaseInterval : 0
         }))
+		if (this.state.seconds === 0) {
+			Vibration.vibrate()
+		}
 	}
 
-    toggleCount = () => {
-        console.log('toggle!')
-    }
+    startStopCount = () => {isPaused = !isPaused}
 
-    resetCount = () => {
-        console.log("reseting timer");
+    toggleCount = () => {
+		isWorking = !isWorking
         this.setState(prevState => ({
-            seconds: minToSec(WORK_MINUTES),
+            seconds: isWorking ? minToSec(BREAK_MINUTES) : minToSec(WORK_MINUTES),
         }))
+		isPaused = true
     }
 
     getFormatedTime = seconds => {
@@ -48,10 +52,10 @@ class Counter extends Component {
             <>
                 <Text style={styles.text}>{this.getFormatedTime(this.state.seconds)}</Text>
                 <View style={styles.button}>
-                    <Button title="Reset" onPress={this.resetCount}/>
+                    <Button title="Toggle" onPress={this.toggleCount}/>
                 </View>
                 <View style={styles.button}>
-                    <Button title="Start/Stop" onPress={this.toggleCount}/>
+                    <Button title={isPaused ? 'Start' : 'Pause'} onPress={this.startStopCount}/>
                 </View>
             </>
         )
