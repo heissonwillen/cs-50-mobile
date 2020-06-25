@@ -1,10 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Constants from 'expo-constants';
+
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hello, world!</Text>
+      <Text style={{
+        fontSize: 24,
+        padding: 20,
+      }}>
+        Search for a movie
+      </Text>
     </View>
   );
 }
@@ -14,6 +21,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
   },
 });
