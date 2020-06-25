@@ -6,11 +6,14 @@ import { movie } from '../mockData'
 
 const Detail = () => {
 
+  const route = useRoute()
+
+  const routeParams = route.params
+
   const navigation = useNavigation()
 
   function handleMoviePress() {
-    console.log("navigating to detail")
-    navigation.navigate("Movie")
+    console.log(route.params)
   }
 
   function Row(props) {
@@ -38,7 +41,7 @@ const Detail = () => {
         <Row title="Awards" content={movie.Awards} />
         <Row title="Production" content={movie.Production} />
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => handleMoviePress()}>
           <Row title="Website" content={movie.Website} />
         </TouchableOpacity>
       </ScrollView>

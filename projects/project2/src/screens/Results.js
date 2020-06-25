@@ -4,13 +4,12 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { search, movie } from '../mockData'
 
-const Detail = () => {
+const Results = () => {
 
   const navigation = useNavigation()
 
-  function handleMoviePress() {
-    console.log("navigating to detail")
-    navigation.navigate("Movie")
+  function handleMoviePress(imdbID) {
+    navigation.navigate("Movie", imdbID)
   }
 
   return (
@@ -21,7 +20,7 @@ const Detail = () => {
             <TouchableOpacity
               style={styles.infoSection}
               activeOpacity={0.6}
-              onPress={handleMoviePress}
+              onPress={() => handleMoviePress(movie.imdbID)}
             >
               <Image style={styles.poster} source={{uri: movie.Poster}} />
               <Text style={{paddingLeft: 10, fontSize: 18, flex: 1}}>{movie.Title} ({movie.Year})</Text>
@@ -54,4 +53,4 @@ const styles = {
   }
 }
 
-export default Detail
+export default Results
