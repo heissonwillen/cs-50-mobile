@@ -12,6 +12,10 @@ const Results = () => {
     navigation.navigate("Movie", imdbID)
   }
 
+  function componentDidMount() {
+    console.log("hi")
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView>
