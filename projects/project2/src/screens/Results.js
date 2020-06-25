@@ -4,29 +4,26 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { search, movie } from '../mockData'
 
-const HomeScreen = () => {
+const Detail = () => {
 
   const navigation = useNavigation()
 
-  const handleMoviePress = (movieTitle) => {
-    navigation.navigate('MovieInfoScreen')
+  function handleMoviePress() {
+    console.log("navigating to detail")
+    navigation.navigate("Movie")
   }
 
   return (
     <View style={styles.container}>
-        <TextInput
-          style={styles.textInput}
-          autoFocus
-        />
       <ScrollView>
         {search.Search.map(movie => (
           <View key={movie.imdbID} style={{paddingTop: 5}}>
             <TouchableOpacity
-              style={styles.touchableArea}
+              style={styles.infoSection}
               activeOpacity={0.6}
-              onPress={() => handleMoviePress(movie.Title)}
+              onPress={handleMoviePress}
             >
-              <Image style={styles.movieCoverImage} source={{uri: movie.Poster}} />
+              <Image style={styles.poster} source={{uri: movie.Poster}} />
               <Text style={{paddingLeft: 10, fontSize: 18, flex: 1}}>{movie.Title} ({movie.Year})</Text>
             </TouchableOpacity>
           </View>
@@ -38,20 +35,16 @@ const HomeScreen = () => {
 
 const styles = {
   container: {
-    padding: 15,
+    paddingRight: 5,
+    paddingLeft: 5,
     flex: 1,
   },
-  textInput: {
-    borderWidth: 1,
-    borderRadius: 10,
-    padding: 5,
-  },
-  movieCoverImage: {
+  poster: {
     width: 90,
     height: 120,
     borderRadius: 5,
   },
-  touchableArea: {
+  infoSection: {
     flex: 1,
     alignItems: 'center',
     flexDirection:'row',
@@ -61,4 +54,4 @@ const styles = {
   }
 }
 
-export default HomeScreen
+export default Detail
