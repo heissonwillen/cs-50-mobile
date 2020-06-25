@@ -2,15 +2,16 @@ import React from 'react';
 import { Button, View } from 'react-native';
 
 
-const MovieInfoScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button
-        title="Go back"
-        onPress={() => navigation.goBack()} />
+        title="Go to the movie screen"
+        onPress={() => navigation.navigate('Movie')}
+      />
     </View>
   );
 }
 
 
-export default MovieInfoScreen
+export default HomeScreen
