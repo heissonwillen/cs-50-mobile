@@ -3,8 +3,8 @@ import { Button, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import HomeScreen from './screens/HomeScreen'
-import MovieInfoScreen from './screens/MovieInfoScreen'
+import Home from './screens/Home'
+import Detail from './screens/Detail'
 
 
 const Stack = createStackNavigator();
@@ -12,8 +12,8 @@ const Stack = createStackNavigator();
 function MainStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Movie" component={MovieInfoScreen} />
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Movie" component={Detail} />
     </Stack.Navigator>
   );
 }
