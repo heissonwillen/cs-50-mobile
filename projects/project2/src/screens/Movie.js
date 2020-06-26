@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native';
 
-import { fetchMovieInfo } from '../api'
+import { getMovie } from '../api'
 import MovieInfo from '../components/MovieInfo'
 
 class Detail extends React.Component {
@@ -12,7 +12,7 @@ class Detail extends React.Component {
   }
 
   componentDidMount() {
-    fetchMovieInfo(this.state.imdbID).then(movie=> this.setState({movie}))
+    getMovie(this.state.imdbID).then(movie=> this.setState({movie}))
     console.log(this.state.movie)
   }
 
