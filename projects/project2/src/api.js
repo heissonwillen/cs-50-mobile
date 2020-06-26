@@ -8,3 +8,10 @@ export const getMovie = async imdbID => {
   const movie = await response.json()
   return movie
 }
+
+export const searchMovies = async queryString => {
+  const response = await fetch(baseURL + 's=' + queryString)
+  const movies = await response.json()
+  // console.log(movies)
+  return movies
+}

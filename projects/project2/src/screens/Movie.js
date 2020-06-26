@@ -12,8 +12,7 @@ class Detail extends React.Component {
   }
 
   componentDidMount() {
-    getMovie(this.state.imdbID).then(movie=> this.setState({movie}))
-    console.log(this.state.movie)
+    getMovie(this.state.imdbID).then(movie => this.setState({movie}))
   }
 
   render() {
