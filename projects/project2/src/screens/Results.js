@@ -1,20 +1,17 @@
 import React from 'react';
 import { Button, View, TextInput, TouchableOpacity, Text, Image, ScrollView } from 'react-native';
 
-import { search } from '../mockData'
-import { searchMovies, getMovie } from '../api'
-
+import { search } from '../api'
 
 class Results extends React.Component {
 
   state = {
     queryString: this.props.route.params,
-    movies: null,
+    search: null,
   }
 
   componentDidMount() {
-    searchMovies(this.state.queryString).then(movies => this.setState({movies}))
-    // console.log(this.state)
+    search(this.state.queryString).then(search => this.setState({search}))
   }
 
   handleMoviePress = imdbID => {
@@ -23,10 +20,10 @@ class Results extends React.Component {
 
 
   render() {
-    return this.state.movies ? (
+    return (this.state.search) ? (
       <View style={styles.container}>
         <ScrollView>
-          {this.state.movies.Search.map(movie => (
+          {this.state.search.Search.map(movie => (
             <View key={movie.imdbID} style={{paddingTop: 5}}>
               <TouchableOpacity
                 style={styles.infoSection}

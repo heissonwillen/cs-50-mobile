@@ -9,9 +9,9 @@ export const getMovie = async imdbID => {
   return movie
 }
 
-export const searchMovies = async queryString => {
+export const search = async queryString => {
   const response = await fetch(baseURL + 's=' + queryString)
-  const movies = await response.json()
-  // console.log(movies)
-  return movies
+  const search = await response.json()
+  console.log(search.Response)
+  return (search && search.Response === "True") ? search : null
 }
