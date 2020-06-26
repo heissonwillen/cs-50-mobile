@@ -1,35 +1,35 @@
 import React from 'react';
 import { Button, View, TextInput, TouchableOpacity, Text, Image, ScrollView } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
 
-import { search, movie } from '../mockData'
+import { search } from '../mockData'
 
-const Results = () => {
 
-  const navigation = useNavigation()
+class Results extends React.Component {
 
-  function handleMoviePress(imdbID) {
-    navigation.navigate("Movie", {"imdbID": imdbID})
+  handleMoviePress = imdbID => {
+    this.props.navigation.navigate('Movie', {imdbID})
   }
 
-  return (
-    <View style={styles.container}>
-      <ScrollView>
-        {search.Search.map(movie => (
-          <View key={movie.imdbID} style={{paddingTop: 5}}>
-            <TouchableOpacity
-              style={styles.infoSection}
-              activeOpacity={0.6}
-              onPress={() => handleMoviePress(movie.imdbID)}
-            >
-              <Image style={styles.poster} source={{uri: movie.Poster}} />
-              <Text style={{paddingLeft: 10, fontSize: 18, flex: 1}}>{movie.Title} ({movie.Year})</Text>
-            </TouchableOpacity>
-          </View>
-        ))}
-      </ScrollView>
-    </View>
-  );
+  render() {
+    return (
+      <View style={styles.container}>
+        <ScrollView>
+          {search.Search.map(movie => (
+            <View key={movie.imdbID} style={{paddingTop: 5}}>
+              <TouchableOpacity
+                style={styles.infoSection}
+                activeOpacity={0.6}
+                onPress={() => this.handleMoviePress(movie.imdbID)}
+              >
+                <Image style={styles.poster} source={{uri: movie.Poster}} />
+                <Text style={{paddingLeft: 10, fontSize: 18, flex: 1}}>{movie.Title} ({movie.Year})</Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
+    )
+  }
 }
 
 const styles = {
