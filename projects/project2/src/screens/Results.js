@@ -9,7 +9,7 @@ const Results = () => {
   const navigation = useNavigation()
 
   function handleMoviePress(imdbID) {
-    navigation.navigate("Movie", imdbID)
+    navigation.navigate("Movie", {"imdbID": imdbID})
   }
 
   return (
