@@ -3,15 +3,21 @@ import { Button, View, TextInput, TouchableOpacity, Text, Image, ScrollView } fr
 
 import { search } from '../api'
 
+const resultsPerPage = 10
+
 class Results extends React.Component {
 
   state = {
     queryString: this.props.route.params,
     search: null,
+    numberOfPages: null,
   }
 
   componentDidMount() {
-    search(this.state.queryString).then(search => this.setState({search}))
+    search(this.state.queryString).then(search => this.setState({
+      search: search,
+      numberOfPages: Math.floor(search.totalResults/resultsPerPage)+1,
+    }))
   }
 
   handleMoviePress = imdbID => {
