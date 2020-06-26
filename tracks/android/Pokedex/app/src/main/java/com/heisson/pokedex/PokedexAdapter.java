@@ -1,5 +1,6 @@
 package com.heisson.pokedex;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder> {
-    private static class PokedexViewHolder extends RecyclerView.ViewHolder {
+    public static class PokedexViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout containerView;
         public TextView textView;
 
@@ -21,6 +22,18 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
             super(view);
             containerView = view.findViewById(R.id.pokedex_row);
             textView = view.findViewById(R.id.pokedex_row_text_view);
+
+            containerView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Pokemon current = (Pokemon) containerView.getTag();
+                    Intent intent = new Intent(v.getContext(), PokemonActivity.class);
+                    intent.putExtra("name", current.getName());
+                    intent.putExtra("number", current.getNumber());
+
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
@@ -43,6 +56,7 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
     public void onBindViewHolder(@NonNull PokedexViewHolder holder, int position) {
         Pokemon current = pokemon.get(position);
         holder.textView.setText(current.getName());
+        holder.containerView.setTag(current);
     }
 
     @Override
