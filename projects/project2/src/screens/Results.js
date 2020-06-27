@@ -9,16 +9,29 @@ class Results extends React.Component {
 
   state = {
     queryString: this.props.route.params,
+    currentPage: 1,
     search: null,
     numberOfPages: null,
   }
 
   componentDidMount() {
-    search(this.state.queryString).then(search => this.setState({
+    search(this.state.currentPage, this.state.queryString).then(search => this.setState({
       search: search,
       numberOfPages: Math.floor(search.totalResults/resultsPerPage)+1,
     }))
+
+    this.setState({
+      numberOfPages: 10,
+    })
+
   }
+
+  // loadResults = (page, queryString) => {
+  //   console.log(this.state.numberOfPages)
+  //   search(page, queryString).then(search => this.setState({
+  //     search: search,
+  //   }))
+  // }
 
   handleMoviePress = imdbID => {
     this.props.navigation.navigate('Movie', {imdbID})
@@ -26,6 +39,7 @@ class Results extends React.Component {
 
 
   render() {
+    // this.state.search && console.log(this.state.numberOfPages)
     return (this.state.search) ? (
       <View style={styles.container}>
         <ScrollView>
