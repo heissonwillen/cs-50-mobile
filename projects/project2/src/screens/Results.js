@@ -27,7 +27,6 @@ class Results extends React.Component {
   }
 
   loadResults = (page, queryString) => {
-    // console.log(this.state.numberOfPages)
     if (page <= this.state.numberOfPages) {
       search(page, queryString).then(search => this.setState({
         search: search,
@@ -42,7 +41,6 @@ class Results extends React.Component {
 
 
   render() {
-    // this.state.search && console.log(this.state.numberOfPages)
     return (this.state.search) ? (
       <View style={styles.container}>
         <ScrollView>
@@ -60,7 +58,7 @@ class Results extends React.Component {
           ))}
         </ScrollView>
         <View style={{padding: 5}}>
-          <Button title="Load More" onPress={() => this.loadResults(this.state.currentPage + 1, this.state.queryString)}/>
+          <Button title="Load More" onPress={() => this.loadResults(this.state.currentPage+1, this.state.queryString)}/>
         </View>
       </View>
     ) : <View></View>
