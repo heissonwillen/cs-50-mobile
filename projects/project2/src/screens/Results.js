@@ -26,12 +26,15 @@ class Results extends React.Component {
 
   }
 
-  // loadResults = (page, queryString) => {
-  //   console.log(this.state.numberOfPages)
-  //   search(page, queryString).then(search => this.setState({
-  //     search: search,
-  //   }))
-  // }
+  loadResults = (page, queryString) => {
+    // console.log(this.state.numberOfPages)
+    if (page <= this.state.numberOfPages) {
+      search(page, queryString).then(search => this.setState({
+        search: search,
+        currentPage: page,
+      }))
+    }
+  }
 
   handleMoviePress = imdbID => {
     this.props.navigation.navigate('Movie', {imdbID})
@@ -56,6 +59,9 @@ class Results extends React.Component {
             </View>
           ))}
         </ScrollView>
+        <View style={{padding: 5}}>
+          <Button title="Load More" onPress={() => this.loadResults(this.state.currentPage + 1, this.state.queryString)}/>
+        </View>
       </View>
     ) : <View></View>
   }
